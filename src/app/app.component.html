@@ -1,0 +1,28 @@
+<div class = "main-container">
+<!-- Header -->
+
+  <mat-toolbar class="appHeader">
+    <span>Sales Tracker</span>
+     <span class="subtitle-header">Welcome Deepika</span>
+  </mat-toolbar>
+
+<!-- Header -->
+
+<!-- Content -->
+<div class="content-container">
+ <router-outlet></router-outlet>
+ 
+ <div fxLayoutAlign="center center" class="loaderCntnr" *ngIf="isLoaderVisible()">
+  <mat-spinner [diameter]="80" [mode]="'indeterminate'"></mat-spinner>
+</div>
+ </div>
+<!-- Content -->
+
+<!-- Footer -->
+<mat-toolbar class="footer" >
+  
+</mat-toolbar>
+
+
+<!-- Footer -->
+</div>

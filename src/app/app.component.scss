@@ -1,0 +1,16 @@
+.main-container{
+	height: 100vh;
+    overflow: hidden;
+    margin: 0;
+	.appHeader{
+		background:#008080;
+		color:#fff;
+	}
+	.footer{
+		background:#008080;
+		color:#fff;
+	}
+	.content-container{
+		height:calc(100% - 120px);
+	}
+}

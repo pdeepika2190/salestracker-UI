@@ -1,0 +1,60 @@
+<form [formGroup]="salesInteractionForm" style="width: 90%;margin: 0 auto;background: #dddddd36;height: 100%;">
+
+
+<div fxLayout="column">
+ <div fxLayout="row"   fxLayoutAlign="space-evenly center" class="row-style">
+<mat-form-field fxFlex="25" class="margin-input-right">
+          <mat-label>Organization Name</mat-label>
+          <mat-select formControlName="orgName">
+            <mat-option  *ngFor="let orgData of salesFormObj.orgData"  [value]="orgData" (onSelectionChange)="getcustomersDetail($event)">
+               {{orgData.organizationName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex="25" class="margin-input-right">
+          <mat-label>Customers</mat-label>
+          <mat-select formControlName="customer">
+            <mat-option  *ngFor="let cust of salesFormObj.customerData"  [value]="cust">
+              {{cust.firstName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex="25" class="margin-input-right">
+          <mat-label>Contact No</mat-label>
+          <input matInput [(ngModel)]="salesInteractionForm.get('customer').value.personalNumber" [ngModelOptions]="{standalone: true}" [disabled]="true" />
+          
+        </mat-form-field>
+        
+        </div>
+        
+        <div formArrayName="salesCaseDtos" class="descDiv">
+      
+            <div *ngFor="let data of salesDescField.controls; let i=index">
+    <!-- The repeated salesCaseDtos template -->
+         <div [formGroupName]="i" fxLayout="row" fxLayoutAlign="space-evenly center">
+         <mat-form-field fxFlex="60">
+         <mat-label>Please add Description</mat-label>
+        <textarea matInput formControlName="caseDesc"></textarea>
+          </mat-form-field>
+          </div>
+      </div>
+      
+    </div>
+         
+</div>
+
+
+   <div mat-dialog-actions class="example-button-row"  *ngIf ="this.salesDescField.value.length > 0">
+        <div class="actionsCntnr">
+          <button mat-stroked-button style="margin-right:10px"  (click)="createsalesReq()">Save</button>
+          <button mat-stroked-button >Cancle</button>
+        </div>
+      </div>
+   <div class="example-button-row" style="right:7%" *ngIf ="salesInteractionForm.get('customer').value.personalNumber">
+    <button class="btn-default" mat-mini-fab (click)="addDesc()">
+      <mat-icon class="spin360" matTooltip="Add Case">add</mat-icon>
+    </button>
+  </div>
+ 
+
+</form>
